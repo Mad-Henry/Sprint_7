@@ -1,13 +1,14 @@
 import requests
 from urls import BASE_URL, COURERS_BASE_URL, COURERS_LOGIN_URL
 from helpers import HelpersMethods as HM
-
+import allure
 
 class CourerMethods:
 
 # Создание курьера
 
     @staticmethod
+    @allure.step("Регистрация нового курьера и возврат логина, пароля и имени")
     def register_new_courier_and_return_login_password(creds=None):   
         login_pass = []
         if creds == None:    
@@ -36,6 +37,7 @@ class CourerMethods:
 # Логин курьера
 
     @staticmethod
+    @allure.step("Логин курьера")
     def login_courier(creds):
 
         payload = {
