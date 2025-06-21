@@ -1,25 +1,19 @@
 import requests
-import random
-import string
 from urls import BASE_URL, COURERS_BASE_URL, COURERS_LOGIN_URL
+from helpers import HelpersMethods as HM
+
 
 class CourerMethods:
 
 # Создание курьера
-    
-    @staticmethod   
-    def generate_random_string(length):
-        letters = string.ascii_lowercase
-        random_string = ''.join(random.choice(letters) for i in range(length))
-        return random_string
 
     @staticmethod
     def register_new_courier_and_return_login_password(creds=None):   
         login_pass = []
         if creds == None:    
-            login = CourerMethods.generate_random_string(10)
-            password = CourerMethods.generate_random_string(10)
-            first_name = CourerMethods.generate_random_string(10)
+            login = HM.generate_random_string(10)
+            password = HM.generate_random_string(10)
+            first_name = HM.generate_random_string(10)
         else:
             login, password, first_name = creds
 
