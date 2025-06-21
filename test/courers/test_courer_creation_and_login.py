@@ -18,13 +18,18 @@ class TestCourerCreation:
         courier_2 = CM.register_new_courier_and_return_login_password(COURER_CREATION_CREDS)
         assert courier_2[0] == 409 and COURER_CREATION_ERR_LGN_ALRD_EXIST_TXT in courier_2[2], f'courier_2 status code:{courier_2[0]}, courier_2 message: {courier_2[1]}'
     
-    @allure.title("Чтобы создать курьера, нужно передать в ручку все обязательные поля. Если одного из полей нет, запрос возвращает ошибку")
-    def test_courer_creation_necessary_fields(self):
-        courier_no_login = CM.register_new_courier_and_return_login_password(COURER_NO_LOGIN_CREDS)
-        courier_no_pass = CM.register_new_courier_and_return_login_password(COURER_NO_PASS_CREDS)        
-        assert courier_no_login[0] == courier_no_pass[0] == 400, \
-            (f'courier_no_login and courier_no_pass status code: {courier_no_login[0]}, {courier_no_pass[0]}')
+    @allure.title("Если не указан логин, запрос возвращает ошибку")
+    def test_courer_creation_empty_login_returns_error(self):
+        courier_no_login = CM.register_new_courier_and_return_login_password(COURER_NO_LOGIN_CREDS)      
+        assert courier_no_login[0] == 400, \
+            (f'courier_no_login status code: {courier_no_login[0]}')
         assert COURER_CREATION_ERR_REQUIERD_FLDS_TXT in courier_no_login[2], (f'courier_no_login status code: {courier_no_login[0]}')
+
+    @allure.title("Если не указан пароль, запрос возвращает ошибку")
+    def test_courer_creation_empty_password_returns_error(self):
+        courier_no_pass = CM.register_new_courier_and_return_login_password(COURER_NO_PASS_CREDS)        
+        assert courier_no_pass[0] == 400, \
+            (f'courier_no_pass status code: {courier_no_pass[0]}')
         assert COURER_CREATION_ERR_REQUIERD_FLDS_TXT in courier_no_pass[2], (f'courier_no_pass status code: {courier_no_pass[0]}')
 
     @allure.title("Запрос возвращает правильный код ответа")
