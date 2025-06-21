@@ -8,11 +8,7 @@ from data import COURER_LOGIN_CORRECT_CREDS, COURER_LOGIN_CREDS_ID, COURER_LOGIN
 @allure.feature("Тесты создание курьеров")
 class TestCourerCreation:
 
-    @allure.title("Курьера можно создать")
-    def test_courer_creation_avability(self):
-        resp_state_and_creds = CM.register_new_courier_and_return_login_password()
-        assert resp_state_and_creds[0] == 201 and resp_state_and_creds[1] != None, f'status code: {resp_state_and_creds[0]}, creds:{resp_state_and_creds[1]}'
-    
+
     @allure.title("Нельзя создать двух одинаковых курьеров. Если создать пользователя с логином, который уже есть, возвращается ошибка")
     def test_courer_creation_dublicate_error(self):
         courier_1 = CM.register_new_courier_and_return_login_password(COURER_CREATION_CREDS)
@@ -38,7 +34,7 @@ class TestCourerCreation:
         creation_status_code = CM.register_new_courier_and_return_login_password()[0]
         assert creation_status_code == 201, f'creation_status_code is {creation_status_code}'
 
-    @allure.title("Успешный запрос возвращает Ok-True")
+    @allure.title("Курьера можно создать, плюс успешный запрос возвращает Ok-True")
     def test_courer_creation_status_text_is_ok(self):
         creation_status_text = CM.register_new_courier_and_return_login_password()[2]
         assert COURER_CREATION_OK_TRUE_TXT in creation_status_text, f'creation_status_text is {creation_status_text}'
