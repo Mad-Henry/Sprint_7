@@ -1,6 +1,6 @@
 import requests
 from urls import BASE_URL, COURERS_BASE_URL, COURERS_LOGIN_URL
-from helpers import HelpersMethods as HM
+from methods.helpers import HelpersMethods as HM
 import allure
 
 class CourerMethods:

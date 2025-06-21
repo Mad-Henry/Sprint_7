@@ -1,5 +1,6 @@
 import allure
 from methods.courer_methods import CourerMethods as CM
+from methods.helpers import HelpersMethods as HM
 from data import COURER_CREATION_CREDS, COURER_NO_LOGIN_CREDS, COURER_NO_PASS_CREDS, COURER_CREATION_ERR_LGN_ALRD_EXIST_TXT, COURER_CREATION_ERR_REQUIERD_FLDS_TXT, COURER_CREATION_OK_TRUE_TXT
 from data import COURER_LOGIN_CORRECT_CREDS, COURER_LOGIN_CREDS_ID, COURER_LOGIN_NO_LOGIN, COURER_LOGIN_NO_PASS, COURER_LOGIN_ERR_REQUIRED_FLDS_TXT, COURER_LOGIN_ERR_WRONG_FLDS_TXT
 
@@ -62,8 +63,8 @@ class TestCourerLogin:
 
     @allure.title("Система вернёт ошибку, если неправильно указать логин или пароль. Если авторизоваться под несуществующим пользователем, запрос возвращает ошибку;")
     def test_login_test_wrong_login_or_pass(self):
-        wrong_login = CM.generate_random_string(10)
-        wrong_pass = CM.generate_random_string(10)
+        wrong_login = HM.generate_random_string(10)
+        wrong_pass = HM.generate_random_string(10)
         courer_wrong_login = CM.login_courier([wrong_login, COURER_LOGIN_CORRECT_CREDS[1]])[1]
         courer_wrong_pass = CM.login_courier([COURER_LOGIN_CORRECT_CREDS[0], wrong_pass])[1]
         assert COURER_LOGIN_ERR_WRONG_FLDS_TXT in courer_wrong_login and COURER_LOGIN_ERR_WRONG_FLDS_TXT in courer_wrong_pass, \
