@@ -22,9 +22,10 @@ class TestCourerCreation:
     def test_courer_creation_necessary_fields(self):
         courier_no_login = CM.register_new_courier_and_return_login_password(COURER_NO_LOGIN_CREDS)
         courier_no_pass = CM.register_new_courier_and_return_login_password(COURER_NO_PASS_CREDS)        
-        assert courier_no_login[0] == courier_no_pass[0] == 400 \
-            and COURER_CREATION_ERR_REQUIERD_FLDS_TXT in courier_no_login[2] and COURER_CREATION_ERR_REQUIERD_FLDS_TXT in courier_no_pass[2], \
-            (f'courier_no_login status code: {courier_no_login[0]}, courier_no_pass status code: {courier_no_pass[0]}')
+        assert courier_no_login[0] == courier_no_pass[0] == 400, \
+            (f'courier_no_login and courier_no_pass status code: {courier_no_login[0]}, {courier_no_pass[0]}')
+        assert COURER_CREATION_ERR_REQUIERD_FLDS_TXT in courier_no_login[2], (f'courier_no_login status code: {courier_no_login[0]}')
+        assert COURER_CREATION_ERR_REQUIERD_FLDS_TXT in courier_no_pass[2], (f'courier_no_pass status code: {courier_no_pass[0]}')
 
     @allure.title("Запрос возвращает правильный код ответа")
     def test_courer_creation_status_code_is_ok(self):
