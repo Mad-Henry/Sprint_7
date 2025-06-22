@@ -1,4 +1,5 @@
 import allure
+import requests
 from methods.order_methods import OrderMethods as OM
 from data import ORDER_REQUEST_ALL_CRRCT_FLDS, ORDER_REQUEST_ALL_COLORS, ORDER_REQUEST_COLOR_IS_NONE
 import pytest
@@ -11,6 +12,8 @@ class TestOrderCreation:
     @pytest.mark.parametrize("payload", [ORDER_REQUEST_ALL_CRRCT_FLDS, ORDER_REQUEST_ALL_COLORS, ORDER_REQUEST_COLOR_IS_NONE])
     def test_order_creation_responce_include_track(self, payload):
         order_resp_txt = OM.order_creation(payload)[1]
+        order_resp_track = order_resp_txt.split(':')
+        OM.order_cancalation(order_resp_track[1])
         assert 'track' in order_resp_txt, f'order_resp_txt is: {order_resp_txt}, payload is {payload}'
 
 

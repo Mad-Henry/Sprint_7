@@ -53,7 +53,7 @@ class TestCourerLogin:
         assert courer_status == 200 and 'id' in courer_status_txt, f'Status code: {courer_status}, ID is: {courer_status_txt}'
 
     @allure.title("Для авторизации нужно передать все обязательные поля. Если какого-то поля нет, запрос возвращает ошибку")
-    def test_login_test_required_fileds(self, create_and_remove_courer_fxtr):
+    def test_login_test_required_fileds(self):
         courer_no_login_text = CM.login_courier(COURER_LOGIN_NO_LOGIN)[1]
         courer_no_pass_text = CM.login_courier(COURER_LOGIN_NO_PASS)[1]
         assert COURER_LOGIN_ERR_REQUIRED_FLDS_TXT in courer_no_login_text and COURER_LOGIN_ERR_REQUIRED_FLDS_TXT in courer_no_pass_text, \
