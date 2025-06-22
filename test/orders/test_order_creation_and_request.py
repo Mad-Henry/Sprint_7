@@ -1,5 +1,4 @@
 import allure
-import requests
 from methods.order_methods import OrderMethods as OM
 from data import ORDER_REQUEST_ALL_CRRCT_FLDS, ORDER_REQUEST_ALL_COLORS, ORDER_REQUEST_COLOR_IS_NONE
 import pytest

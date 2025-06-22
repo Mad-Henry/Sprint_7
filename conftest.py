@@ -1,5 +1,4 @@
 import pytest
-import urls
 from urls import COURERS_REMOVE_COURER
 from methods.courer_methods import CourerMethods as CM
 
