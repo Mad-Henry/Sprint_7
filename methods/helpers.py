@@ -11,3 +11,4 @@ class HelpersMethods:
         letters = string.ascii_lowercase
         random_string = ''.join(random.choice(letters) for i in range(length))
         return random_string
+    

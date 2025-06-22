@@ -1,5 +1,5 @@
 import requests
-from urls import BASE_URL, COURERS_BASE_URL, COURERS_LOGIN_URL
+from urls import BASE_URL, COURERS_BASE_URL, COURERS_LOGIN_URL, COURERS_REMOVE_COURER
 from methods.helpers import HelpersMethods as HM
 import allure
 
@@ -47,3 +47,11 @@ class CourerMethods:
         response = requests.post(f'{BASE_URL}{COURERS_LOGIN_URL}', data=payload)
         return response.status_code, response.text
     
+# Удаление курьера
+
+    @staticmethod
+    @allure.step('Удаление курьера')
+    def remove_courer(id):
+        COURERS_REMOVE_COURER_N = COURERS_REMOVE_COURER + id
+        response = requests.delete(f'{BASE_URL}{COURERS_REMOVE_COURER_N}')
+        return response.status_code, response.text
